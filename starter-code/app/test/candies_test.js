@@ -91,7 +91,6 @@ describe('DELETE /candies/:id', function () {
     api.get('/candies')
       .set('Accept', 'application/json')
       .end(function (error, response) {
-        console.log(response.body)
         previousLength = response.body.length
         idToDelete = response.body[0].id
         done()
@@ -101,7 +100,6 @@ describe('DELETE /candies/:id', function () {
     api.delete(`/candies/${idToDelete}`)
       .set('Accept', 'application/json')
       .end(function (error, response) {
-        console.log(response.status)
         done()
       })
   })
@@ -109,7 +107,6 @@ describe('DELETE /candies/:id', function () {
     api.get('/candies')
       .set('Accept', 'application/json')
       .end(function (error, response) {
-        console.log(response.body)
         expect(response.body.length).to.equal(previousLength - 1)
         expect(response.body.find((candy) => candy.id == idToDelete)).to.equal(undefined)
         done()
