@@ -1,55 +1,49 @@
-
-var express = require('express'),
-    router = express.Router(),
-    bodyParser = require('body-parser'), //parses information from POST
-    methodOverride = require('method-override'); //used to manipulate POST
-
+const express        = require('express'),
+      bodyParser     = require('body-parser'), //parses information from POST
+      methodOverride = require('method-override') //used to fake PUT and DELETE requests
+      router         = express.Router(),
 
 candies = [
-{id: 1, name: "Chewing Gum" , color: "Red"},
-{id: 2, name: "Pez"         , color: "Green"},
-{id: 3, name: "Marshmallow" , color: "Pink"},
-{id: 4, name: "Candy Stick" , color: "Blue"}
+  {id: 1, name: 'Toffee Bar',      color: 'Red'},
+  {id: 2, name: 'Pez',             color: 'Green'},
+  {id: 3, name: 'Pop Rocks',       color: 'Pink'},
+  {id: 4, name: 'Sour Patch Kids', color: 'Blue'}
 ]
-
 
 // http://127.0.0.1:3000/candies
 router.route('/')
-  //GET all candies
-  .get(function(req, res, next) {
-    res.json(candies);
+  .get((req, res) => { //GET all candies
+    res.json(candies)
   })
-  //POST a new candy
-  .post(function(req, res) {
+  .post((req, res) => { //POST a new candy
     candies.push(req.body)
-    res.json(req.body);
-  });
+    res.json(req.body)
+  })
 
 // Show a Candy
 router.route('/:id')
-  // GET one candy by id
-  .get(function(req,res){
-    candy = candies.filter(function(element){ return element["id"] == req.params.id })[0]
+  .get((req,res) => { // GET one candy by id
+    let candy = candies.find(element => element.id === parseInt(req.params.id))
     res.json(candy)
   })
-  // DELETE one candy by id
-  .delete(function(req, res){
-    let candy = candies.find((candy) => candy.id == req.params.id)
-    candies.splice(candies.indexOf(candy), 1)
-    res.json({message : 'deleted' });
-  });
+  .delete((req, res) => { // DELETE one candy by id
+    let candy = candies.find(candy => candy.id === parseInt(req.params.id))
+    candies.splice(candies.indexOf(candy), 1) // another way: candies = candies.filter(candy => candy.id !== req.params.id)
+    res.json({
+      deleted : true,
+      ...candy
+    })
+  })
 
 //Update a Candy
-router.put('/:id/edit', function(req, res) {
+router.put('/:id/edit', (req, res) => {
   for(i in candies){
-    if(candies[i]["id"] == req.params.id){
+    if(candies[i].id === parseInt(req.params.id)) {
       candies[i] = req.body
     }
   }
-  res.format({
-    json: function(){ res.json(req.body); }
-  });
-});
+  res.format({ json: () => res.json(req.body) })
+})
 
 
 
