@@ -1,7 +1,7 @@
-const express        = require('express'),
-      bodyParser     = require('body-parser'), //parses information from POST
-      methodOverride = require('method-override') //used to fake PUT and DELETE requests
-      router         = express.Router()
+const express        = require('express')
+const bodyParser     = require('body-parser') //parses information from POST
+const methodOverride = require('method-override') //used to fake PUT and DELETE requests
+const router         = express.Router()
 
 let candies = [
   {id: 1, name: 'Toffee Bar',      color: 'Brown, Caramel'},

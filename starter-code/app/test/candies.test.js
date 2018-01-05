@@ -1,7 +1,7 @@
-let should = require('chai').should()
-let expect = require('chai').expect
-let supertest = require('supertest')
-let api = supertest('http://localhost:3000')
+const should    = require('chai').should()
+const expect    = require('chai').expect
+const supertest = require('supertest')
+const api       = supertest('http://localhost:3000')
 
 describe('GET /candies', () => {
   it('should return a 200 response', done => {
