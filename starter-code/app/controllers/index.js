@@ -1,8 +1,9 @@
-const express = require('express')
-const router  = express.Router()
+const express = require("express");
+const router = express.Router();
 
-router.use('/candies', require('./candies'))
+router.get("/", (req, res) => {
+  res.redirect("/candies");
+});
+router.use("/candies", require("./candies"));
 
-
-
-module.exports = router
+module.exports = router;
