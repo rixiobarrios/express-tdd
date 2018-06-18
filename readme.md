@@ -80,8 +80,8 @@ To be able to make HTTP requests inside tests, we will use [Supertest](https://g
 Take the starter code provided in the `starter-code` directory of this lesson plan. Take a moment to familiarize yourself with the Express app and get everything set up. Be sure to `npm install` and start the server.
 
 ```bash
-git clone https://github.com/ga-wdi-lessons/mocha-chai-supertest
-cd mocha-chai-supertest/starter-code/app
+git clone https://git.generalassemb.ly/dc-wdi-node-express/express-tdd
+cd express-tdd/starter-code/app
 npm install
 node app.js
 ```
