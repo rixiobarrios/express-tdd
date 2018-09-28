@@ -8,31 +8,31 @@
 
 We've now created a number of applications.  All these apps cover a single topic, so most of the time, they are quite small.  But when you create a larger application, the codebase will become bigger and more complex every time you add some features. At some point, adding code in file A will break features in file B, and to avoid these "side-effects" or at least recognize immediately when they happen, we need to write tests our app and run them on each change. In a production-level application, providing a high level of [test coverage](http://www.softwaretestingclass.com/test-coverage-in-software-testing/) for an application is usually required in order to guarantee that code is bug-free and functions as intended.
 
-## Types of Testing
+## Types of Testing (10 min / 0:10)
 
 See: [Types of Software Testing](http://www.softwaretestinghelp.com/types-of-software-testing/)
 
 * How tests are executed:
-  - __Manual__ - user runs test via the UI
-  - __Automated__ - test scripts are executed that call into the code and compare results to expected values
+  - **Manual** - user runs test via the UI
+  - **Automated** - test scripts are executed that call into the code and compare results to expected values
 * Granularity:
-  - __Unit__ - focuses on testing individual "units" of code, usually individual components, functions or methods
-  - __Integration__ - set of components that are collaborating (interacting) to perform a task
-  - __End-to-end (E2E)__ - complete application running in an environment that mimics a real-world production environment
+  - **Unit** - focuses on testing individual "units" of code, usually individual components, functions or methods
+  - **Integration** - set of components that are collaborating (interacting) to perform a task
+  - **End-to-end (E2E)** - complete application running in an environment that mimics a real-world production environment
 * Purpose:
-  - __Functional__
-     * __Positive testing__ - does it work when it is supposed to work.
-     * __Negative testing__ - does it fail when it is supposed to fail.
-  - __Regression__ - Did we break anything?
-  - __Smoke__ - Did the build work?
-  - __Performance / Load__ - How does the software behave under a heavy load?
+  - **Functional**
+     * **Positive testing** - does it work when it is supposed to work.
+     * **Negative testing** - does it fail when it is supposed to fail.
+  - **Regression** - Did we break anything?
+  - **Smoke** - Did the build work?
+  - **Performance / Load** - How does the software behave under a heavy load?
      * Lots of users / traffic
      * Large data sets
-  - __Usability__ - How intuitive (easy to use) is the software?
-  - __Security__ - How secure is the application?
-  - __Compatibility__ - How well does the software work with various hardware, O.S., network environments?
-  - __Recovery__ - How well does the system respond to hardware or software failures? Is it fault-tolerant?
-  - __User Acceptance Testing (UAT)__ - Does the software do what the customers want it to do?
+  - **Usability** - How intuitive (easy to use) is the software?
+  - **Security** - How secure is the application?
+  - **Compatibility** - How well does the software work with various hardware, O.S., network environments?
+  - **Recovery** - How well does the system respond to hardware or software failures? Is it fault-tolerant?
+  - **User Acceptance Testing (UAT)** - Does the software do what the customers want it to do?
      * Actual software users test the software to make sure it can handle required tasks in real-world scenarios, according to specifications.
 
 
@@ -55,7 +55,7 @@ A development methodology that was derived from `TDD` and [`DDD`](https://en.wik
 > See [What’s the difference between Unit Testing, TDD and BDD?](https://codeutopia.net/blog/2015/03/01/unit-testing-tdd-and-bdd/)
 
 
-## Mocha, Chai And Javascript Testing - Intro (10 min)
+## Mocha, Chai And Javascript Testing - Intro (10 min / 0:20)
 
 To test our code in Node, we will use two primary libraries: one to run the tests and a second one to run the assertions.
 
@@ -63,17 +63,17 @@ Mocha will be our testing framework, but we're mostly just using it as a test ru
 
 > "Mocha is a feature-rich JavaScript test framework running on Node.js and the browser, making asynchronous testing simple and fun. Mocha tests run serially, allowing for flexible and accurate reporting, while mapping (associating) uncaught exceptions to the correct test cases."
 
-
 For assertions, we will use Chai. From the [Chai website](http://chaijs.com/)...
 
 > "Chai is a BDD / TDD assertion library for node and the browser that can be delightfully paired with any javascript testing framework."
 
+> Q: What the heck is an assertion?
 
 To be able to make HTTP requests inside tests, we will use [Supertest](https://github.com/visionmedia/supertest)...
 
 > "The motivation with this module is to provide a high-level abstraction for testing HTTP"
 
-## We Do: Create Tests (35 mins)
+## We Do: Create Tests (45 mins / 1:05)
 
 ### Setting up the app
 
@@ -83,7 +83,7 @@ Take the starter code provided in the `starter-code` directory of this lesson pl
 git clone https://git.generalassemb.ly/dc-wdi-node-express/express-tdd
 cd express-tdd/starter-code/app
 npm install
-node app.js
+nodemon app.js
 ```
 
 To test this app, we need to install a couple of dependencies.
@@ -108,7 +108,7 @@ npm install supertest --save-dev
 
 ### Files and Folders
 
-Now that we're configured, let's set up our file and folder structure. All the tests will be written inside a folder `test` at the root of the app...
+Now that we're configured, let's set up our file and folder structure. All the tests will be written inside a folder `test` at inside of `/app`.
 
 ```bash
  $ mkdir test
@@ -120,24 +120,24 @@ Then we will write the tests inside a file called `candies.test.js`...
  $ touch test/candies.test.js
 ```
 
-> Note: Because our tests will request the application through HTTP, students have to make sure they are running the app while running the tests
+> Note: Because our tests will request the application through HTTP, make sure your express server is running!
 
 ### Writing Our First Test
 
 Open the file `candies.test.js`. We now need to require some dependencies at the top of this file...
 
-```javascript
-const should        = require("chai").should()
-const expect        = require("chai").expect
-const supertest     = require("supertest")
-const api           = supertest("http://localhost:3000")
+```js
+const should = require('chai').should()
+const expect = require('chai').expect
+const supertest = require('supertest')
+const api = supertest('http://localhost:3000')
 ```
 
 Make sure you set the url correctly, as this will be used to request the app and analyze the response.
 
-All the tests need to be inside a `describe` function.  We will use one describe block per route...
+All the tests need to be inside a `describe` function. We will use one describe block per route...
 
-```javascript
+```js
 describe("GET /candies", function () {
   //tests will be written inside this function
 })
@@ -157,7 +157,18 @@ describe("GET /candies", function () {
 })
 ```
 
-> **Note:** Make sure that the done is in the it block and not the describe block!
+Let's break down what's happening here. 
+
+* `describe()` is a function that takes 2 arguments
+  * a string describing a group of operations that are about to happen
+  * a callback function that contains all of the operations
+* `it()` is a function that takes 2 arguments
+  * a string describing some behavior e.g. "should return an array of objects"
+  * a callback function that runs the actual test code. the callback takes an argument that you must call when the test is finished: e.g. `done`
+* Inside of `it()`, we are using an instance of `supertest` which we've assigned to the variable `api`.
+  * The first method called on `api` is `.get()` which actually performs a get request to the specified URL
+  * `.set()` sets an http header on the request. In this case we're specifying what type of data we want to receive
+  * `.expect()` tests the response. In this case we're checking to see if the status code is `200`. The second argument is the `done` function we've declared at the top of `it()`. Passing it in here tells the code we're finished with this block.
 
 Now go in the command line and type `mocha`. When you do, you may get an error saying that the `mocha` command cannot be found. 
 
@@ -188,11 +199,17 @@ In order to run mocha from our local `node_modules` folder, do the following...
     > One thing to keep in mind when using NPM to run tests (really running anything with NPM scripts for that matter) is that NPM will prefer local node modules over globally installed modules. If something has not been installed properly locally this could lead to [differing behavior](https://stackoverflow.com/a/28666483) between running `mocha` and `npm test`.
 3. Run `npm test`. Now we can run it locally from our projects without having to install it globally on our machines, and manage another globally installed package.
 
+> A new alternative that `npm` has introduced is `npx`. `npx` executes whatever command you put after it, first looking in your `node_modules` directory. If it doesn't exist in `node_modules` then it is installed locally.
+
+> So you can also run `npx mocha` and it will execute `node_modules/.bin/mocha` for you.
+
 You will know the test successfully ran when if get an output looking like this...
 
 ![CLI Screenshot](./images/Screen_Shot_2015_08_12_at_12_17_01.png)
 
 This test is passing!
+
+If you get an error like `ECONNREFUSED` make sure your express server is running.
 
 ### Test Blocks
 
@@ -288,7 +305,7 @@ Add this inside the new `describe` block...
   })
 ```
 
-This code will be called for every test we will add into the current `describe` block.
+This code will be called at the beginning of the test block. There's also another method called `beforeEach()` which runs before every test.
 
 Now, we can verify that calling "POST" will add an object to candies...
 
@@ -308,17 +325,50 @@ Run `npm test` in your CLI, you should now have four passing tests!
 
 > How many times can you run this test and have it pass? How can you fix this?
 
+## Break (10 min / 1:15) 
 
-## Independent Practice (20 minutes)
 
-> ***Note:*** _This can be a pair programming activity or done independently._
+## Practice (20 min / 1:35)
 
-Add tests to the suite:
+Write your own tests now!
 
-1. Write a test that makes sure the object returned when you call the `show` route with a specific ID contains the right fields.
+1. Write a test that makes sure the object returned when you GET the `/candies/:id` route with a specific ID contains the right fields
 2. Write a test that ensures an object is deleted from the array candies when you call delete.
-3. Write a test that ensures a property is updated when you call `PUT /candies/:id`
+3. Write a test that ensures a property is updated when you call `PUT /candies/:id
 
+## Review practice (30 min / 2:05)
+
+<details>
+  <summary>
+  Code for 1
+  </summary>
+
+  ```js
+describe('GET /candies/:id', function() {
+  it('should return an object with id, name, color', function(done) {
+    api.get('/candies/2')
+    .end(function(err, response) {
+      expect(response.body).to.have.property('name')
+      expect(response.body).to.have.property('color')
+      expect(response.body).to.have.property('id')
+      done()
+    })
+  })
+})
+  ```
+</details>
+
+<details>
+  <summary>
+  Code for 2
+  </summary>
+</details>
+
+<details>
+  <summary>
+  Code for 3
+  </summary>
+</details>
 
 ## Conclusion (10 mins)
 > Review the answers to the tests specs above
