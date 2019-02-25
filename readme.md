@@ -54,7 +54,6 @@ A development methodology that was derived from `TDD` and [`DDD`](https://en.wik
 
 > See [What’s the difference between Unit Testing, TDD and BDD?](https://codeutopia.net/blog/2015/03/01/unit-testing-tdd-and-bdd/)
 
-
 ## Mocha, Chai And Javascript Testing - Intro (10 min / 0:20)
 
 To test our code in Node, we will use two primary libraries: one to run the tests and a second one to run the assertions.
@@ -77,41 +76,38 @@ To be able to make HTTP requests inside tests, we will use [Supertest](https://g
 
 ### Setting up the app
 
-Take the starter code provided in the `starter-code` directory of this lesson plan. Take a moment to familiarize yourself with the Express app and get everything set up. Be sure to `npm install` and start the server.
-
-```bash
-git clone https://git.generalassemb.ly/dc-wdi-node-express/express-tdd
-cd express-tdd/starter-code/app
-npm install
-nodemon app.js
-```
+Clone down the starter code from [this
+repository](https://git.generalassemb.ly/dc-wdi-node-express/express-tdd-exercise).
+Take a moment to familiarize yourself with the Express app and get everything
+set up. Be sure to `npm install` and start the server with nodemon.
 
 To test this app, we need to install a couple of dependencies.
 
-First, let's install mocha using --save-dev...
+First, let's install `mocha`:
 
 ```bash
-npm install mocha --save-dev
+npm install mocha
 ```
 
-Then we will install chai using --save-dev
+Then we will install `chai`:
 
 ```bash
-npm install chai --save-dev
+npm install chai
 ```
 
-Last dependency we need to install is supertest...
+Last dependency we need to install is supertest:
 
 ```bash
-npm install supertest --save-dev
+npm install supertest
 ```
 
 ### Files and Folders
 
-Now that we're configured, let's set up our file and folder structure. All the tests will be written inside a folder `test` at inside of `/app`.
+Now that we're configured, let's set up our file and folder structure. All the
+tests will be written inside a folder `test` at inside of `/app`.
 
 ```bash
- $ mkdir test
+mkdir test
 ```
 
 Then we will write the tests inside a file called `candies.test.js`...
@@ -124,7 +120,7 @@ Then we will write the tests inside a file called `candies.test.js`...
 
 ### Writing Our First Test
 
-Open the file `candies.test.js`. We now need to require some dependencies at the top of this file...
+Open the file `candies.test.js`. We now need to require some dependencies at the top of this file:
 
 ```js
 const should = require('chai').should()
@@ -135,14 +131,13 @@ const api = supertest('http://localhost:3000')
 
 Make sure you set the url correctly, as this will be used to request the app and analyze the response.
 
-All the tests need to be inside a `describe` function. We will use one describe block per route...
+All the tests need to be inside a `describe` function. We will use one describe block per route:
 
 ```js
 describe("GET /candies", function () {
   //tests will be written inside this function
 })
 ```
-
 
 First, we will write a test to make sure that a request to the index path `/candies` returns a http status 200...
 
@@ -157,42 +152,42 @@ describe("GET /candies", function () {
 })
 ```
 
-Let's break down what's happening here. 
+Let's break down what's happening here.
 
 * `describe()` is a function that takes 2 arguments
-  * a string describing a group of operations that are about to happen
-  * a callback function that contains all of the operations
+  * a string describing a group of operations that are about to happen (like
+      the title of this group of tests)
+  * a callback function that contains all of the individual tests
 * `it()` is a function that takes 2 arguments
   * a string describing some behavior e.g. "should return an array of objects"
-  * a callback function that runs the actual test code. the callback takes an argument that you must call when the test is finished: e.g. `done`
+  * a callback function that runs the actual test code. The callback takes an argument that you must call when the test is finished: e.g. `done`
 * Inside of `it()`, we are using an instance of `supertest` which we've assigned to the variable `api`.
   * The first method called on `api` is `.get()` which actually performs a get request to the specified URL
   * `.set()` sets an http header on the request. In this case we're specifying what type of data we want to receive
   * `.expect()` tests the response. In this case we're checking to see if the status code is `200`. The second argument is the `done` function we've declared at the top of `it()`. Passing it in here tells the code we're finished with this block.
 
-Now go in the command line and type `mocha`. When you do, you may get an error saying that the `mocha` command cannot be found. 
+Now go in the command line and type `mocha`. When you do, you may get an error
+saying that the `mocha` command cannot be found.
 
-This is because `mocha` is not installed globally on our machines (though it's possible you may have it already installed). While we could simply install mocha globally and run the test, we would not be using the specified version of `mocha` listed a dev dependency in our `package.json` and contained in `node_modules`. 
+This is because `mocha` is not installed globally on our machines (though it's
+possible you may have it already installed). While we could simply install mocha
+globally and run the test, we would not be using the specified version of
+`mocha` listed a dev dependency in our `package.json` and contained in
+`node_modules`.
 
-In order to run mocha from our local `node_modules` folder, do the following...
+In order to run mocha from our local `node_modules` folder, do the following:
 
-1. Run mocha directly from our `node_modules` folder to ensure you've installed it properly...
+1. Run mocha directly from our `node_modules` folder to ensure you've installed it properly:
     ```bash
     node_modules/.bin/mocha
     ```
-2. Alias the `mocha` command to an npm script in our `package.json`...
+2. Alias the `mocha` command to an npm script in our `package.json`:
     ```javascript
     {
-      "name": "express-routing-lab",
-      "version": "0.0.0",
-      "description": "",
-      "main": "app.js",
+      ...
       "scripts": {
         "test": "node_modules/.bin/mocha"
       },
-      "dependencies": {
-        ...
-      }
       ...
     }
     ```
@@ -209,7 +204,7 @@ You will know the test successfully ran when if get an output looking like this.
 
 This test is passing!
 
-If you get an error like `ECONNREFUSED` make sure your express server is running.
+> If you get an error like `ECONNREFUSED` make sure your express server is running.
 
 ### Test Blocks
 
@@ -223,7 +218,7 @@ Now, let's verify the content of the response by looking at the data sent back b
 [
   {
     id: 1,
-    name: 'Toffee Bar',      
+    name: 'Toffee Bar',
     color: 'Brown, Caramel'
   }, {
     id: 2,
@@ -239,7 +234,6 @@ Now, let's verify the content of the response by looking at the data sent back b
     color: 'Blue'
   }
 ]
-
 ```
 
 We can write a test that verifies the response is an array...
@@ -325,8 +319,7 @@ Run `npm test` in your CLI, you should now have four passing tests!
 
 > How many times can you run this test and have it pass? How can you fix this?
 
-## Break (10 min / 1:15) 
-
+## Break (10 min / 1:15)
 
 ## Practice (20 min / 1:35)
 
@@ -336,42 +329,47 @@ Write your own tests now!
 2. Write a test that ensures an object is deleted from the array candies when you call delete.
 3. Write a test that ensures a property is updated when you call `PUT /candies/:id
 
-## Review practice (30 min / 2:05)
-
-<details>
-  <summary>
-  Code for 1
-  </summary>
-
-  ```js
-describe('GET /candies/:id', function() {
-  it('should return an object with id, name, color', function(done) {
-    api.get('/candies/2')
-    .end(function(err, response) {
-      expect(response.body).to.have.property('name')
-      expect(response.body).to.have.property('color')
-      expect(response.body).to.have.property('id')
-      done()
-    })
-  })
-})
-  ```
-</details>
-
-<details>
-  <summary>
-  Code for 2
-  </summary>
-</details>
-
-<details>
-  <summary>
-  Code for 3
-  </summary>
-</details>
+<!--
+   - ## Review practice (30 min / 2:05)
+   - 
+   - <details>
+   -   <summary>
+   -   Code for 1
+   -   </summary>
+   - 
+   -   ```js
+   - describe('GET /candies/:id', function() {
+   -   it('should return an object with id, name, color', function(done) {
+   -     api.get('/candies/2')
+   -     .end(function(err, response) {
+   -       expect(response.body).to.have.property('name')
+   -       expect(response.body).to.have.property('color')
+   -       expect(response.body).to.have.property('id')
+   -       done()
+   -     })
+   -   })
+   - })
+   -   ```
+   - </details>
+   - 
+   - <details>
+   -   <summary>
+   -   Code for 2
+   -   </summary>
+   - </details>
+   - 
+   - <details>
+   -   <summary>
+   -   Code for 3
+   -   </summary>
+   - </details>
+   -->
 
 ## Conclusion (10 mins)
-> Review the answers to the tests specs above
+
+<!--
+   - > Review the answers to the tests specs above
+   -->
 
 We've covered the principles of testing in JavaScript, but Chai offers a lot of different expectations syntaxes. Check the [Chai Documentation](http://chaijs.com/api/)
 
