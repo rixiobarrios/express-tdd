@@ -137,7 +137,7 @@ Make sure you set the url correctly, as this will be used to request the app and
 All the tests need to be inside a `describe` function. We will use one describe block per route:
 
 ```js
-describe("GET /candies", function () {
+describe("GET /candies", () => {
   //tests will be written inside this function
 })
 ```
@@ -145,8 +145,8 @@ describe("GET /candies", function () {
 First, we will write a test to make sure that a request to the index path `/candies` returns a http status 200...
 
 ```javascript
-describe("GET /candies", function () {
-  it("should return a 200 response", function (done) {
+describe("GET /candies", () => {
+  it("should return a 200 response", done => {
     api
       .get("/candies")
       .set("Accept", "application/json")
@@ -242,11 +242,11 @@ Now, let's verify the content of the response by looking at the data sent back b
 We can write a test that verifies the response is an array...
 
 ```javascript
-it("should return an array", function(done){
+it("should return an array", done => {
   api
     .get("/candies")
     .set("Accept", "application/json")
-    .end(function(error, response){
+    .end((error, response) => {
       expect(response.body).to.be.an('array');
       done()
     })
@@ -258,11 +258,11 @@ NB: In the first test, we were using the `.expect` method of `supertest`. Here w
 We can write another test that verifies the presence of a field in the response...
 
 ```javascript
-it("should return an array of objects that have a field called 'name' ", function(done){
+it("should return an array of objects that have a field called 'name' ", done => {
   api
     .get("/candies")
     .set("Accept", "application/json")
-    .end(function(error, response){
+    .end((error, response) => {
       expect(response.body[0]).to.have.property('name');
       done()
   })
@@ -274,7 +274,7 @@ We can also send data to the server and test the behavior - in our case, we want
 Because we are going to test another route, lets add another describe block...
 
 ```javascript
-describe("POST /candies", function(){
+describe("POST /candies", () => {
 
 })
 ```
@@ -289,7 +289,7 @@ For this, we will use `before` blocks. A `before` block will be executed ONCE BE
 Add this inside the new `describe` block...
 
 ```javascript
-  before(function(done){
+  before(done => {
     api
       .post("/candies")
       .set("Accept", "application/json")
@@ -309,11 +309,11 @@ For more information on the difference between `before` and `beforeEach`: https:
 Now, we can verify that calling "POST" will add an object to candies...
 
 ```javascript
-it("should add a candy object to the collection candies and return it", function (done) {
+it("should add a candy object to the collection candies and return it", done => {
   api
     .get("/candies")
     .set("Accept", "application/json")
-    .end(function(error, response){
+    .end((error, response) => {
       expect(response.body.length).to.equal(5);
       done()
     })
@@ -344,9 +344,9 @@ Write your own tests now!
    - 
    -   ```js
    - describe('GET /candies/:id', function() {
-   -   it('should return an object with id, name, color', function(done) {
+   -   it('should return an object with id, name, color', done => {
    -     api.get('/candies/2')
-   -     .end(function(err, response) {
+   -     .end((err, response) => {
    -       expect(response.body).to.have.property('name')
    -       expect(response.body).to.have.property('color')
    -       expect(response.body).to.have.property('id')
