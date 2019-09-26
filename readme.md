@@ -8,7 +8,7 @@
 
 We've now created a number of applications.  All these apps cover a single topic, so most of the time, they are quite small.  But when you create a larger application, the codebase will become bigger and more complex every time you add some features. At some point, adding code in file A will break features in file B, and to avoid these "side-effects" or at least recognize immediately when they happen, we need to write tests our app and run them on each change. In a production-level application, providing a high level of [test coverage](http://www.softwaretestingclass.com/test-coverage-in-software-testing/) for an application is usually required in order to guarantee that code is bug-free and functions as intended.
 
-## Types of Testing (10 min / 0:10)
+## Types of Testing
 
 See: [Types of Software Testing](http://www.softwaretestinghelp.com/types-of-software-testing/)
 
@@ -54,7 +54,7 @@ A development methodology that was derived from `TDD` and [`DDD`](https://en.wik
 
 > See [What’s the difference between Unit Testing, TDD and BDD?](https://codeutopia.net/blog/2015/03/01/unit-testing-tdd-and-bdd/)
 
-## Mocha, Chai And Javascript Testing - Intro (10 min / 0:20)
+## Intro to JavaScript Testing with Mocha & Chai
 
 To test our code in Node, we will use two primary libraries: one to run the tests and a second one to run the assertions.
 
@@ -72,12 +72,12 @@ To be able to make HTTP requests inside tests, we will use [Supertest](https://g
 
 > "The motivation with this module is to provide a high-level abstraction for testing HTTP"
 
-## We Do: Create Tests (45 mins / 1:05)
+## We Do: Create Tests
 
 ### Setting up the app
 
 Clone down the starter code from [this
-repository](https://git.generalassemb.ly/dc-wdi-node-express/express-tdd-exercise).
+repository](https://git.generalassemb.ly/seir-826/express-tdd-exercise).
 Take a moment to familiarize yourself with the Express app and get everything
 set up. Be sure to `npm install` and start the server with nodemon.
 
@@ -321,7 +321,7 @@ Run `npm test` in your CLI, you should now have four passing tests!
 
 ## Break (10 min / 1:15)
 
-## Practice (20 min / 1:35)
+## Practice
 
 Write your own tests now!
 
@@ -365,7 +365,7 @@ Write your own tests now!
    - </details>
    -->
 
-## Conclusion (10 mins)
+## Conclusion
 
 <!--
    - > Review the answers to the tests specs above
