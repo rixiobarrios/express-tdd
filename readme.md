@@ -328,7 +328,7 @@ Run `npm test` in your CLI, you should now have four passing tests!
 
 Write your own tests now!
 
-1. Write a test that makes sure the object is returned with right fields when you call ```GET /candies/:id```.
+1. Write a test that makes sure the object is returned with right fields (i.e., ```id```, ```name```, ```color```) when you call ```GET /candies/:id```.
 2. Write a test that ensures an object is deleted from the array candies when you call ```DELETE /candies/:id```.
 3. Write a test that ensures a property is updated when you call ```PUT /candies/:id```.
 
