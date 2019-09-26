@@ -284,7 +284,7 @@ For this test, we need to:
 1. Create a new object by sending a `POST` request
 2. Verify that a new object has been "saved" by requesting the index route
 
-For this, we will use `before` blocks. A `before` block will be executed for every `it` function is called inside a `describe` block.
+For this, we will use `before` blocks. A `before` block will be executed ONCE BEFORE all the tests in the `describe` block.
 
 Add this inside the new `describe` block...
 
@@ -303,6 +303,8 @@ Add this inside the new `describe` block...
 ```
 
 This code will be called at the beginning of the test block. There's also another method called `beforeEach()` which runs before every test.
+
+For more information on the difference between `before` and `beforeEach`: https://stackoverflow.com/questions/21418580/what-is-the-difference-between-before-and-beforeeach
 
 Now, we can verify that calling "POST" will add an object to candies...
 
