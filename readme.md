@@ -79,9 +79,12 @@ To be able to make HTTP requests inside tests, we will use [Supertest](https://g
 Clone down the starter code from [this
 repository](https://git.generalassemb.ly/seir-826/w06d02-seir826-express-tdd-exercise).
 Take a moment to familiarize yourself with the Express app and get everything
-set up. Be sure to `npm install` and start the server with nodemon.
+set up. 
 
-To test this app, we need to install a couple of dependencies.
+1. Run ```npm install``` from the root directory.
+2. Run ```nodemon app.js``` to start your express server. The app will be served at ```localhost:3000```.
+
+3. To test this app, we need to install a couple of dependencies.
 
 First, let's install `mocha`:
 
