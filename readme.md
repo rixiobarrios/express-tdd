@@ -8,37 +8,7 @@
 
 We've now created a number of applications.  All these apps cover a single topic, so most of the time, they are quite small.  But when you create a larger application, the codebase will become bigger and more complex every time you add some features. At some point, adding code in file A will break features in file B, and to avoid these "side-effects" or at least recognize immediately when they happen, we need to write tests our app and run them on each change. In a production-level application, providing a high level of [test coverage](http://www.softwaretestingclass.com/test-coverage-in-software-testing/) for an application is usually required in order to guarantee that code is bug-free and functions as intended.
 
-## Types of Testing
-
-See: [Types of Software Testing](http://www.softwaretestinghelp.com/types-of-software-testing/)
-
-* How tests are executed:
-  - **Manual** - user runs test via the UI
-  - **Automated** - test scripts are executed that call into the code and compare results to expected values
-* Granularity:
-  - **Unit** - focuses on testing individual "units" of code, usually individual components, functions or methods
-  - **Integration** - set of components that are collaborating (interacting) to perform a task
-  - **End-to-end (E2E)** - complete application running in an environment that mimics a real-world production environment
-* Purpose:
-  - **Functional**
-     * **Positive testing** - does it work when it is supposed to work.
-     * **Negative testing** - does it fail when it is supposed to fail.
-  - **Regression** - Did we break anything?
-  - **Smoke** - Did the build work?
-  - **Performance / Load** - How does the software behave under a heavy load?
-     * Lots of users / traffic
-     * Large data sets
-  - **Usability** - How intuitive (easy to use) is the software?
-  - **Security** - How secure is the application?
-  - **Compatibility** - How well does the software work with various hardware, O.S., network environments?
-  - **Recovery** - How well does the system respond to hardware or software failures? Is it fault-tolerant?
-  - **User Acceptance Testing (UAT)** - Does the software do what the customers want it to do?
-     * Actual software users test the software to make sure it can handle required tasks in real-world scenarios, according to specifications.
-
-
-### TDD and BDD
-
-#### TDD: Test-driven development
+## TDD: Test-Driven Development
 
 A development methodology of writing the tests first, then writing the code to make those tests pass. Thus the process is:
 
@@ -47,12 +17,6 @@ A development methodology of writing the tests first, then writing the code to m
 3. Verify that the implementation of the unit makes the tests succeed
 4. Refactor
 5. Repeat
-
-#### BDD: Behavior-driven development
-
-A development methodology that was derived from `TDD` and [`DDD`](https://en.wikipedia.org/wiki/Domain-driven_design) (Domain-driven design) where tests are written in an English-like language (i.e. the `Gherkin` language) that specifies the external *behavior* (the specifications) of the unit without reference to how the unit was implemented (thus it is a form of *black box* testing). The purpose of BDD is to both describe and test the behavior of a unit of code in a single *specification* file.
-
-> See [What’s the difference between Unit Testing, TDD and BDD?](https://codeutopia.net/blog/2015/03/01/unit-testing-tdd-and-bdd/)
 
 ## Intro to JavaScript Testing with Mocha & Chai
 
@@ -380,3 +344,38 @@ We've covered the principles of testing in JavaScript, but Chai offers a lot of 
 
 - How does Mocha work with Chai to write tests in your JavaScript application?
 - Describe how to configure your app to use Mocha and Chai.
+
+
+## BONUS: Types of Testing
+
+See: [Types of Software Testing](http://www.softwaretestinghelp.com/types-of-software-testing/)
+
+* How tests are executed:
+  - **Manual** - user runs test via the UI
+  - **Automated** - test scripts are executed that call into the code and compare results to expected values
+* Granularity:
+  - **Unit** - focuses on testing individual "units" of code, usually individual components, functions or methods
+  - **Integration** - set of components that are collaborating (interacting) to perform a task
+  - **End-to-end (E2E)** - complete application running in an environment that mimics a real-world production environment
+* Purpose:
+  - **Functional**
+     * **Positive testing** - does it work when it is supposed to work.
+     * **Negative testing** - does it fail when it is supposed to fail.
+  - **Regression** - Did we break anything?
+  - **Smoke** - Did the build work?
+  - **Performance / Load** - How does the software behave under a heavy load?
+     * Lots of users / traffic
+     * Large data sets
+  - **Usability** - How intuitive (easy to use) is the software?
+  - **Security** - How secure is the application?
+  - **Compatibility** - How well does the software work with various hardware, O.S., network environments?
+  - **Recovery** - How well does the system respond to hardware or software failures? Is it fault-tolerant?
+  - **User Acceptance Testing (UAT)** - Does the software do what the customers want it to do?
+     * Actual software users test the software to make sure it can handle required tasks in real-world scenarios, according to specifications.
+
+
+## BONUS: Behavior-Driven Development (BDD)
+
+A development methodology that was derived from `TDD` and [`DDD`](https://en.wikipedia.org/wiki/Domain-driven_design) (Domain-driven design) where tests are written in an English-like language (i.e. the `Gherkin` language) that specifies the external *behavior* (the specifications) of the unit without reference to how the unit was implemented (thus it is a form of *black box* testing). The purpose of BDD is to both describe and test the behavior of a unit of code in a single *specification* file.
+
+> See [What’s the difference between Unit Testing, TDD and BDD?](https://codeutopia.net/blog/2015/03/01/unit-testing-tdd-and-bdd/)
