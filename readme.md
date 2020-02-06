@@ -255,17 +255,20 @@ For this, we will use `before` blocks. A `before` block will be executed ONCE BE
 Add this inside the new `describe` block...
 
 ```javascript
+describe("POST /candies", () => {
+  const newCandy = {
+    id: 5,
+    name: 'Lollipop',
+    color: 'Red'
+  };
   before(done => {
     api
-      .post("/candies")
-      .set("Accept", "application/json")
-      .send({
-        "id": 5,
-        "name": "Lollipop",
-        "color": "Red"
-      })
-      .end(done)
-  })
+      .post('/candies')
+      .set('Accept', 'application/json')
+      .send(newCandy)
+      .end(done);
+  });
+})
 ```
 
 This code will be called at the beginning of the test block. There's also another method called `beforeEach()` which runs before every test.
@@ -275,15 +278,17 @@ For more information on the difference between `before` and `beforeEach`: https:
 Now, we can verify that calling "POST" will add an object to candies...
 
 ```javascript
-it("should add a candy object to the collection candies and return it", done => {
-  api
-    .get("/candies")
-    .set("Accept", "application/json")
-    .end((error, response) => {
-      expect(response.body.length).to.equal(5);
-      done()
-    })
-})
+  it('should add a candy object to the collection candies and return it', done => {
+    api
+      .get('/candies')
+      .set('Accept', 'application/json')
+      .end((error, response) => {
+        expect(response.body.find(candy => candy.id === newCandy.id)).to.be.an(
+          'object'
+        );
+        done();
+      });
+  });
 ```
 
 Run `npm test` in your CLI, you should now have four passing tests!
