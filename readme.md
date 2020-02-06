@@ -227,7 +227,9 @@ it("should return an array of objects that have a field called 'name' ", done =>
     .get("/candies")
     .set("Accept", "application/json")
     .end((error, response) => {
-      expect(response.body[0]).to.have.property('name');
+        response.body.forEach(candy => {
+          expect(candy).to.have.property('name');
+        });
       done()
   })
 })
