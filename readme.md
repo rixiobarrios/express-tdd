@@ -231,7 +231,7 @@ it("should return an array of objects that have a field called 'name' ", done =>
           expect(candy).to.have.property('name');
         });
       done()
-  })
+   })
 })
 ```
 
