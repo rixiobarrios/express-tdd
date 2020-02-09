@@ -30,7 +30,7 @@ For assertions, we will use Chai. From the [Chai website](http://chaijs.com/)...
 
 > "Chai is a BDD / TDD assertion library for node and the browser that can be delightfully paired with any javascript testing framework."
 
-> Q: What the heck is an assertion?
+> Q: What the heck is an assertion? It's a way of writing a unit test that tests whether or not a test case is passing or failing.
 
 To be able to make HTTP requests inside tests, we will use [Supertest](https://github.com/visionmedia/supertest)...
 
